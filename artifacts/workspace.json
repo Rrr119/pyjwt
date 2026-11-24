@@ -1,0 +1,17 @@
+{
+  "root": "/home/dev/feedback/uid36777",
+  "B": "/home/dev/feedback/uid36777",
+  "sha": "8e29224e249a5a1010176035c85084c8b6dd8069",
+  "wslDistro": "Ubuntu-26.04",
+  "source": {
+    "owner": "jpadilla",
+    "repo": "pyjwt",
+    "sha": "8e29224e249a5a1010176035c85084c8b6dd8069"
+  },
+  "fork": {
+    "owner": "Rrr119",
+    "repo": "pyjwt",
+    "cloneUrl": "https://github.com/Rrr119/pyjwt.git"
+  },
+  "at": "2026-11-24T05:39:17.159Z"
+}

@@ -518,6 +518,36 @@ an error.
 requests. See :class:`~jwt.PyJWKClient` in the API reference for details on
 the caching parameters.
 
+Verifying tokens from multiple issuers
+--------------------------------------
+
+``MultiIssuerJWKClient`` builds on ``PyJWKClient`` to verify tokens from
+several trusted issuers, each with its own JWKS endpoint. The issuer of an
+incoming token is checked against a whitelist and used to route key
+resolution to the right endpoint:
+
+.. code-block:: pycon
+
+    >>> from jwt import MultiIssuerJWKClient
+    >>> jwks_clients = MultiIssuerJWKClient(
+    ...     {
+    ...         "https://issuer-a.example.com": "https://issuer-a.example.com/jwks.json",
+    ...         "https://issuer-b.example.com": "https://issuer-b.example.com/jwks.json",
+    ...     }
+    ... )
+    >>> payload = jwks_clients.decode(token, algorithms=["RS256"])
+
+``decode()`` mirrors :func:`jwt.decode` but resolves the verification key
+automatically from the token's ``iss`` claim and ``kid`` header, and
+validates the ``iss`` claim against the whitelist. Tokens from issuers not
+in the mapping are rejected with ``InvalidIssuerError``.
+
+Key rotation is handled automatically in both directions: keys newly added
+to a JWKS are picked up when an unknown ``kid`` triggers a refresh, and
+keys that have been rotated out keep verifying through the per-key cache
+(``cache_keys=True``, enabled by default), so tokens signed before a
+rotation do not immediately fail.
+
 OIDC Login Flow
 ---------------
 

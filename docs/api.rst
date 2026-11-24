@@ -34,6 +34,10 @@ API Reference
     :class-doc-from: init
     :members:
 
+.. autoclass:: MultiIssuerJWKClient
+    :class-doc-from: init
+    :members:
+
 .. note:: TODO: Finish documenting PyJWS class
 .. module:: jwt.api_jws
 

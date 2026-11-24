@@ -26,6 +26,7 @@ from .exceptions import (
     PyJWTError,
 )
 from .jwks_client import PyJWKClient
+from .multi_issuer_client import MultiIssuerJWKClient
 from .warnings import InsecureKeyLengthWarning
 
 __version__ = "2.15.1"
@@ -47,6 +48,7 @@ __all__ = [
     "PyJWS",
     "PyJWT",
     "PyJWKClient",
+    "MultiIssuerJWKClient",
     "PyJWK",
     "PyJWKSet",
     "decode",
